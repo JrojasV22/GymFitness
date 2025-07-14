@@ -2,14 +2,11 @@
 package FitnessClasses;
 
 
-public class Usuario {
-    private String nombre;
-    private String correo;
+public class Usuario extends Persona {
     private String contraseña;
 
-    public Usuario(String nombre, String correo, String contraseña) {
-        this.nombre = nombre;
-        this.correo = correo;
+    public Usuario(String nombre, String contraseña) {
+        super(nombre);
         this.contraseña = contraseña;
     }
 
@@ -17,17 +14,12 @@ public class Usuario {
         return this.nombre.equals(nombre) && this.contraseña.equals(contraseña);
     }
 
+    @Override
     public String mostrarPerfil() {
-        return "Nombre: " + nombre + "\nCorreo: " + correo;
+        return super.mostrarPerfil() + "\n(Tipo: Usuario)";
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-    public String getCorreo() { 
-        return correo; 
-    }
-    public String getContraseña() { 
-        return correo; 
+    public String getContraseña() {
+        return contraseña;
     }
 }
