@@ -105,7 +105,7 @@ public class Ejercicio {
         return dificultad;
     }
 
-    // Setters si los necesitás (opcional)
+    
     public void setNivel(String nivel) {
         this.nivel = nivel;
     }
