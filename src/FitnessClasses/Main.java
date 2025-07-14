@@ -1,5 +1,5 @@
 
-package gimnasiosfidness;
+package FitnessClasses;
 
 public class Main {
 

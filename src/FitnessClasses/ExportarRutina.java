@@ -1,5 +1,5 @@
 
-package gimnasiosfidness;
+package FitnessClasses;
 
 import java.io.FileWriter;
 import java.io.IOException;

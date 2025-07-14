@@ -1,5 +1,5 @@
 
-package gimnasiosfidness;
+package FitnessClasses;
 
 import java.util.ArrayList;
 import java.util.List;

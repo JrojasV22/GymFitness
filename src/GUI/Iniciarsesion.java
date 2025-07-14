@@ -1,8 +1,8 @@
 
-package igu;
+package GUI;
 
-import gimnasiosfidness.Autenticacion;
-import gimnasiosfidness.Usuario;
+import FitnessClasses.Autenticacion;
+import FitnessClasses.Usuario;
 import javax.swing.JOptionPane;
 
 public class Iniciarsesion extends javax.swing.JFrame {

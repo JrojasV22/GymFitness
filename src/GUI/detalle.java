@@ -1,7 +1,7 @@
 
-package igu;
+package GUI;
 
-import gimnasiosfidness.Ejercicio;
+import FitnessClasses.Ejercicio;
 
 
 public class detalle extends javax.swing.JFrame {

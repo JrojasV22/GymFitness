@@ -1,30 +1,13 @@
 
-package igu;
+package GUI;
 
-import java.util.List;
-import gimnasiosfidness.Ejercicio;
 
-public class valido extends javax.swing.JFrame {
-    
-    private String nombreUsuario;
-   
-    // Constructor que recibe el nombre del usuario
-    public valido(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
+public class error extends javax.swing.JFrame {
+
+  
+    public error() {
         initComponents();
-        inicializarCampos();
     }
-    
-    // Método para actualizar el label con el nombre recibido
-    private void inicializarCampos() {
-        jLabel1.setText("Bienvenido, " + nombreUsuario);
-    }
-    
-    private valido() {
-        initComponents();
-        jLabel1.setText("Bienvenido");
-    }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,13 +25,14 @@ public class valido extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setForeground(new java.awt.Color(255, 0, 0));
 
         jLabel1.setFont(new java.awt.Font("Hoefler Text", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Bienvenido, Jeffry");
+        jLabel1.setText("Usuario o contraseña incorrectos");
 
-        jButton1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jButton1.setText("Ver ejercicios");
+        jButton1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jButton1.setText("Aceptar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -60,23 +44,23 @@ public class valido extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(38, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(jButton1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addComponent(jLabel1)))
-                .addContainerGap(135, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(145, 145, 145))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(26, 26, 26))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(95, 95, 95)
+                .addGap(75, 75, 75)
                 .addComponent(jLabel1)
-                .addGap(95, 95, 95)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(160, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -94,12 +78,14 @@ public class valido extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // Obtener lista de ejercicios disponibles
-        // Crear instancia de la ventana lista y mostrarla
-            lista ventanaLista = new lista();
-            ventanaLista.setLocationRelativeTo(null);  // Centrar ventana
-            ventanaLista.setVisible(true);
-            this.dispose(); 
+            // Cierra esta ventana de error
+        this.dispose();
+
+        // Abre de nuevo la ventana de Iniciarsesion
+        Iniciarsesion ventanaLogin = new Iniciarsesion();
+        ventanaLogin.setLocationRelativeTo(null);
+        ventanaLogin.setVisible(true);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -119,20 +105,20 @@ public class valido extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(valido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(error.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(valido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(error.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(valido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(error.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(valido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(error.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new valido().setVisible(true);
+                new error().setVisible(true);
             }
         });
     }
