@@ -1,6 +1,6 @@
 
-package igu;
-import gimnasiosfidness.Ejercicio;
+package GUI;
+import FitnessClasses.Ejercicio;
 import java.util.ArrayList;
 import java.util.List;
 

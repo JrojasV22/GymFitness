@@ -1,17 +1,17 @@
 
-package igu;
+package GUI;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import javax.swing.JOptionPane;
-import gimnasiosfidness.Ejercicio;
+import FitnessClasses.Ejercicio;
 
 
 public class exportar extends javax.swing.JFrame {
     
     private String nombreRutina;
-    private List<gimnasiosfidness.Ejercicio> listaEjercicios; 
+    private List<FitnessClasses.Ejercicio> listaEjercicios; 
     
     public exportar(String nombreRutina, List<Ejercicio> listaEjercicios) {
         this.nombreRutina = nombreRutina;

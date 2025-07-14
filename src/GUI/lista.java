@@ -1,7 +1,7 @@
 
-package igu;
+package GUI;
 
-import gimnasiosfidness.Ejercicio;
+import FitnessClasses.Ejercicio;
 import javax.swing.JOptionPane;
 
 public class lista extends javax.swing.JFrame {
