@@ -9,7 +9,7 @@ public class Autenticacion {
 
     public Autenticacion() {
         usuariosRegistrados = new ArrayList<>();
-        usuariosRegistrados.add(new Usuario("Usuario", "Usuario@gmail.com", "1234")); 
+        usuariosRegistrados.add(new Usuario("Admin", "usuario@gmail.com", "1234")); 
     }   
  
     public Usuario validarCredenciales(String nombre, String contraseña) throws Exception {
