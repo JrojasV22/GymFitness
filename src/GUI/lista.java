@@ -363,7 +363,7 @@ public class lista extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        //Press de banca
+        //Curl de bíceps
         Ejercicio ejercicio = null;
         for (Ejercicio e : Ejercicio.getEjerciciosDisponibles()) {
             if (e.getNombre().equals("Curl de bíceps")) {
@@ -439,7 +439,7 @@ public class lista extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        //pecho 
+        //Press de banca
         Ejercicio ejercicio = null;
         for (Ejercicio e : Ejercicio.getEjerciciosDisponibles()) {
             if (e.getNombre().equals("Press de banca")) {
@@ -455,7 +455,7 @@ public class lista extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        //brazo
+        //Curl de bíceps
         Ejercicio ejercicio = null;
         for (Ejercicio e : Ejercicio.getEjerciciosDisponibles()) {
             if (e.getNombre().equals("Curl de bíceps")) {
@@ -471,7 +471,7 @@ public class lista extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        //espalda
+        //Remo con barra
         Ejercicio ejercicio = null;
         for (Ejercicio e : Ejercicio.getEjerciciosDisponibles()) {
             if (e.getNombre().equals("Remo con barra")) {
@@ -487,7 +487,7 @@ public class lista extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-         //core
+         //Plancha
         Ejercicio ejercicio = null;
         for (Ejercicio e : Ejercicio.getEjerciciosDisponibles()) {
             if (e.getNombre().equals("Plancha")) {

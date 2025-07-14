@@ -10,7 +10,7 @@ public class detalle extends javax.swing.JFrame {
         initComponents();
     }
 
-    // Nuevo constructor para recibir el Ejercicio y mostrar sus datos
+    // constructor para recibir el Ejercicio y mostrar sus datos
     public detalle(Ejercicio ejercicio) {
         initComponents();
         mostrarEjercicio(ejercicio);

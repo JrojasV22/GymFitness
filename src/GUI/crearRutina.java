@@ -33,8 +33,8 @@ public class crearRutina extends javax.swing.JFrame {
             return;
         }
 
-        // Aquí podrías guardar en archivo, base de datos o simplemente mostrar mensaje.
-        // Por ahora, solo confirmamos que se "guardó".
+        // guardar en archivo
+        
         javax.swing.JOptionPane.showMessageDialog(this, "Rutina '" + nombreRutina + "' guardada con " 
             + ejerciciosSeleccionados.size() + " ejercicios.");
     }

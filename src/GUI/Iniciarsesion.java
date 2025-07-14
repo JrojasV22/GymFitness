@@ -133,7 +133,7 @@ public class Iniciarsesion extends javax.swing.JFrame {
         String contrasena = jTextField3.getText().trim();
 
         try {
-            Autenticacion autenticacion = new Autenticacion(); // Asegúrate de instanciarla
+            Autenticacion autenticacion = new Autenticacion(); 
             Usuario usuario = autenticacion.validarCredenciales(nombre, contrasena);
            
             // Si la autenticación es exitosa, abrir ventana valido
@@ -144,7 +144,7 @@ public class Iniciarsesion extends javax.swing.JFrame {
             this.dispose();
             
             
-            // Aquí puedes abrir la ventana principal o hacer lo que necesites
+            
         } catch (Exception e) {
             // Si hay error, abrir ventana error y ocultar login
             error ventanaError = new error();
