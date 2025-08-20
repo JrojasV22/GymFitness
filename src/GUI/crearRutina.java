@@ -1,19 +1,22 @@
 
 package GUI;
 import FitnessClasses.Ejercicio;
+import FitnessClasses.RutinaBD;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 public class crearRutina extends javax.swing.JFrame {
     private List<Ejercicio> ejerciciosSeleccionados = new ArrayList<>();
     
     public crearRutina() {
         initComponents();
-        // Botón Guardar
-        jButton1.addActionListener(evt -> {
-            guardarRutina();
-        });
-
+       
         // Botón Exportar
         jButton2.addActionListener(evt -> {
             abrirVentanaExportar();
@@ -23,20 +26,24 @@ public class crearRutina extends javax.swing.JFrame {
     
 
     private void guardarRutina() {
+        // Obtener el nombre de la rutina desde el campo de texto y eliminar espacios al inicio y fin
         String nombreRutina = jTextField1.getText().trim();
+            
+        // Verificar que el nombre no esté vacío
         if (nombreRutina.isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(this, "Ingrese un nombre para la rutina.");
             return;
         }
+                
+        // Verificar que se hayan seleccionado ejercicios
         if (ejerciciosSeleccionados.isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(this, "Debe agregar al menos un ejercicio.");
             return;
         }
-
-        // guardar en archivo
-        
-        javax.swing.JOptionPane.showMessageDialog(this, "Rutina '" + nombreRutina + "' guardada con " 
-            + ejerciciosSeleccionados.size() + " ejercicios.");
+                    
+        // Guardar la rutina en la base de datos usando la clase RutinaBD
+        RutinaBD.guardarRutina(nombreRutina, ejerciciosSeleccionados);
+        JOptionPane.showMessageDialog(this, "Rutina '" + nombreRutina + "' guardada correctamente.");
     }
     
     private void abrirVentanaExportar() {
@@ -53,44 +60,41 @@ public class crearRutina extends javax.swing.JFrame {
         exportar ventanaExportar = new exportar(nombreRutina, ejerciciosSeleccionados);
         ventanaExportar.setVisible(true);
         ventanaExportar.setLocationRelativeTo(null);
-    }
+   }
     
     
     private void actualizarLabels() {
-        if (ejerciciosSeleccionados.size() >= 1) {
-            Ejercicio e1 = ejerciciosSeleccionados.get(0);
-            jLabel4.setText(e1.getNombre());
-            jLabel10.setText(e1.getCategoria());
-            jLabel13.setText(e1.getDescripcion());
-        }
 
-        if (ejerciciosSeleccionados.size() >= 2) {
-            Ejercicio e2 = ejerciciosSeleccionados.get(1);
-            jLabel8.setText(e2.getNombre());
-            jLabel11.setText(e2.getCategoria());
-            jLabel14.setText(e2.getDescripcion());
-        }
-
-        if (ejerciciosSeleccionados.size() >= 3) {
-            Ejercicio e3 = ejerciciosSeleccionados.get(2);
-            jLabel9.setText(e3.getNombre());
-            jLabel12.setText(e3.getCategoria());
-            jLabel15.setText(e3.getDescripcion());
-        }
-
-        if (ejerciciosSeleccionados.size() >= 4) {
-            Ejercicio e4 = ejerciciosSeleccionados.get(3);
-            jLabel7.setText(e4.getNombre());
-            jLabel17.setText(e4.getCategoria());
-            jLabel19.setText(e4.getDescripcion());
-        }
-
-        if (ejerciciosSeleccionados.size() >= 5) {
-            Ejercicio e5 = ejerciciosSeleccionados.get(4);
-            jLabel16.setText(e5.getNombre());
-            jLabel18.setText(e5.getCategoria());
-            jLabel20.setText(e5.getDescripcion());
-        }
+        for (int i = 0; i < ejerciciosSeleccionados.size(); i++) {
+            Ejercicio e = ejerciciosSeleccionados.get(i);
+            switch (i) {
+                case 0:
+                    jLabel4.setText(e.getNombre());
+                    jLabel10.setText(e.getCategoria());
+                    jLabel13.setText(e.getDescripcion());
+                    break;
+                case 1:
+                    jLabel8.setText(e.getNombre());
+                    jLabel11.setText(e.getCategoria());
+                    jLabel14.setText(e.getDescripcion());
+                    break;
+                case 2:
+                    jLabel9.setText(e.getNombre());
+                    jLabel12.setText(e.getCategoria());
+                    jLabel15.setText(e.getDescripcion());
+                    break;
+                case 3:
+                    jLabel7.setText(e.getNombre());
+                    jLabel17.setText(e.getCategoria());
+                    jLabel19.setText(e.getDescripcion());
+                    break;
+                case 4:
+                    jLabel16.setText(e.getNombre());
+                    jLabel18.setText(e.getCategoria());
+                    jLabel20.setText(e.getDescripcion());
+                    break;
+            }
+        }      
     }
     
     private void abrirListaEjercicios() {
@@ -155,6 +159,11 @@ public class crearRutina extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
         jButton1.setText("Guardar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("jLabel14");
@@ -344,6 +353,10 @@ public class crearRutina extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        guardarRutina();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

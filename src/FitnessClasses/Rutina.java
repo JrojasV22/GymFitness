@@ -1,35 +1,26 @@
 
 package FitnessClasses;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Rutina {
+
+
+public class Rutina implements Serializable {
     private String nombre;
     private List<Ejercicio> ejercicios;
 
-    public Rutina(String nombre) {
+    public Rutina(String nombre, List<Ejercicio> ejercicios) {
         this.nombre = nombre;
-        this.ejercicios = new ArrayList<>();
+        this.ejercicios = ejercicios;
     }
 
-    public void agregarEjercicio(Ejercicio e) {
-        ejercicios.add(e);
+    public String getNombre() {
+        return nombre;
     }
 
-    public String mostrarResumen() {
-        return "Rutina: " + nombre + " (" + ejercicios.size() + " ejercicios)";
+    public List<Ejercicio> getEjercicios() {
+        return ejercicios;
     }
-
-    public String verRutina() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Rutina: ").append(nombre).append("\n");
-        for (Ejercicio e : ejercicios) {
-            sb.append("- ").append(e.mostrarResumen()).append("\n");
-        }
-        return sb.toString();
-    }
-
-    public String getNombre() { return nombre; }
-    public List<Ejercicio> getEjercicios() { return ejercicios; }
 }

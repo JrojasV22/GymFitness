@@ -3,6 +3,9 @@ package GUI;
 
 import FitnessClasses.Autenticacion;
 import FitnessClasses.Usuario;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import javax.swing.JOptionPane;
 
 public class Iniciarsesion extends javax.swing.JFrame {
@@ -128,31 +131,39 @@ public class Iniciarsesion extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // Obtener datos de los campos de texto
-        String nombre = jTextField1.getText().trim();
-        String contrasena = jTextField3.getText().trim();
 
-        try {
-            Autenticacion autenticacion = new Autenticacion(); 
-            Usuario usuario = autenticacion.validarCredenciales(nombre, contrasena);
-           
-            // Si la autenticación es exitosa, abrir ventana valido
-            valido ventanaValido = new valido(usuario.getNombre());
-            ventanaValido.setLocationRelativeTo(null); // Centrar ventana
-            ventanaValido.setVisible(true);
-            
-            this.dispose();
-            
-            
-            
-        } catch (Exception e) {
-            // Si hay error, abrir ventana error y ocultar login
-            error ventanaError = new error();
-            ventanaError.setLocationRelativeTo(null);
-            ventanaError.setVisible(true);
+             String nombre = jTextField1.getText().trim();
+            String contrasena = jTextField3.getText().trim();
 
-            this.setVisible(false);  // Oculta ventana login
-        }
+            try (Socket socket = new Socket("localhost", 12341); // Cambia por IP del servidor si no es local
+                 ObjectOutputStream salida = new ObjectOutputStream(socket.getOutputStream());
+                 ObjectInputStream entrada = new ObjectInputStream(socket.getInputStream())) {
+
+                // Enviar acción al servidor
+                salida.writeObject("login");
+                salida.writeObject(nombre);
+                salida.writeObject(contrasena);
+
+                // Leer respuesta
+                String respuesta = (String) entrada.readObject();
+                if (respuesta.equals("Acceso permitido.")) {
+                    // Abrir ventana de usuario válido
+                    valido ventanaValido = new valido(nombre);
+                    ventanaValido.setLocationRelativeTo(null);
+                    ventanaValido.setVisible(true);
+                    this.dispose();
+                } else {
+                    // Abrir ventana de error
+                    error ventanaError = new error();
+                    ventanaError.setLocationRelativeTo(null);
+                    ventanaError.setVisible(true);
+                    this.setVisible(false);
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error de conexión al servidor: " + e.getMessage());
+                e.printStackTrace();
+            }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ejercicio {
+    private int id;
     private String nombre;
     private String descripcion;
     private String categoria;
@@ -57,21 +58,35 @@ public class Ejercicio {
         ));
     }
 
-    // Constructor corregido (orden de parámetros)
     public Ejercicio(String nombre, String categoria, String descripcion, String dificultad, String nivel) {
         this.nombre = nombre;
         this.categoria = categoria;
         this.descripcion = descripcion;
         this.dificultad = dificultad;
         this.nivel = nivel;
-       
     }
 
-    // Métodos de utilidad
-    public String mostrarResumen() {
-        return nombre + " - " + categoria;
+    public Ejercicio(int id, String nombre, String categoria, String descripcion, String dificultad, String nivel) {
+        this.id = id;
+        this.nombre = nombre;
+        this.categoria = categoria;
+        this.descripcion = descripcion;
+        this.dificultad = dificultad;
+        this.nivel = nivel;
     }
 
+    // Getters y setters
+    public int getId() { return id; }
+    public String getNombre() { return nombre; }
+    public String getDescripcion() { return descripcion; }
+    public String getCategoria() { return categoria; }
+    public String getNivel() { return nivel; }
+    public String getDificultad() { return dificultad; }
+
+    public void setId(int id) { this.id = id; }
+    public void setNivel(String nivel) { this.nivel = nivel; }
+
+    public String mostrarResumen() { return nombre + " - " + categoria; }
     public String mostrarDetalle() {
         return "Nombre: " + nombre +
                "\nCategoría: " + categoria +
@@ -80,33 +95,6 @@ public class Ejercicio {
                "\nDificultad: " + dificultad;
     }
 
-    public static List<Ejercicio> getEjerciciosDisponibles() {
-        return ejerciciosDisponibles;
-    }
-
-    // Getters
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public String getNivel() {
-        return nivel;
-    }
-
-    public String getDificultad() {
-        return dificultad;
-    }
-
-    
-    public void setNivel(String nivel) {
-        this.nivel = nivel;
-    }
+    public static List<Ejercicio> getEjerciciosDisponibles() { return ejerciciosDisponibles; }
 }
+
