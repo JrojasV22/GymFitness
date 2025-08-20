@@ -4,11 +4,6 @@ import FitnessClasses.Ejercicio;
 import FitnessClasses.RutinaBD;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 public class crearRutina extends javax.swing.JFrame {
@@ -25,38 +20,23 @@ public class crearRutina extends javax.swing.JFrame {
     }
     
 
-    private void guardarRutina() {
-        // Obtener el nombre de la rutina desde el campo de texto y eliminar espacios al inicio y fin
-        String nombreRutina = jTextField1.getText().trim();
-            
-        // Verificar que el nombre no esté vacío
-        if (nombreRutina.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Ingrese un nombre para la rutina.");
-            return;
-        }
-                
-        // Verificar que se hayan seleccionado ejercicios
-        if (ejerciciosSeleccionados.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Debe agregar al menos un ejercicio.");
-            return;
-        }
-                    
-        // Guardar la rutina en la base de datos usando la clase RutinaBD
-        RutinaBD.guardarRutina(nombreRutina, ejerciciosSeleccionados);
-        JOptionPane.showMessageDialog(this, "Rutina '" + nombreRutina + "' guardada correctamente.");
-    }
     
     private void abrirVentanaExportar() {
+        // Obtener el nombre de la rutina desde el campo de texto
         String nombreRutina = jTextField1.getText().trim();
+        
+        // Validar que el nombre no esté vacío
         if (nombreRutina.isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(this, "Ingrese un nombre para la rutina antes de exportar.");
             return;
         }
+        // Validar que haya ejercicios seleccionados
         if (ejerciciosSeleccionados.isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(this, "No hay ejercicios para exportar.");
             return;
         }
 
+        // Abrir ventana de exportación pasando el nombre y los ejercicios
         exportar ventanaExportar = new exportar(nombreRutina, ejerciciosSeleccionados);
         ventanaExportar.setVisible(true);
         ventanaExportar.setLocationRelativeTo(null);
@@ -65,6 +45,7 @@ public class crearRutina extends javax.swing.JFrame {
     
     private void actualizarLabels() {
 
+        // Actualizar los labels de la interfaz con los datos de los ejercicios agregados
         for (int i = 0; i < ejerciciosSeleccionados.size(); i++) {
             Ejercicio e = ejerciciosSeleccionados.get(i);
             switch (i) {
@@ -98,11 +79,13 @@ public class crearRutina extends javax.swing.JFrame {
     }
     
     private void abrirListaEjercicios() {
+        // Abrir ventana de lista de ejercicios para seleccionar más ejercicios
         lista ventanaLista = new lista(this);
         ventanaLista.setVisible(true);
         ventanaLista.setLocationRelativeTo(null);
     }
     
+    // Obtener la lista de ejercicios agregados a la rutina
     public List<Ejercicio> getEjerciciosAgregados() {
         return this.ejerciciosSeleccionados;
     }
@@ -112,7 +95,7 @@ public class crearRutina extends javax.swing.JFrame {
     public void agregarEjercicio(Ejercicio ejercicio) {
         if (ejerciciosSeleccionados.size() < 5) {
             ejerciciosSeleccionados.add(ejercicio);
-            System.out.println("Ejercicio agregado: " + ejercicio.getNombre());
+            
             actualizarLabels();
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "Solo se pueden agregar hasta 5 ejercicios.");
@@ -129,7 +112,6 @@ public class crearRutina extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -157,13 +139,6 @@ public class crearRutina extends javax.swing.JFrame {
         setBackground(new java.awt.Color(51, 51, 255));
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
-
-        jButton1.setText("Guardar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("jLabel14");
@@ -247,50 +222,46 @@ public class crearRutina extends javax.swing.JFrame {
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel18))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel17))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel12))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel11))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel10))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel5)))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(182, 182, 182)
-                                .addComponent(jButton1)
-                                .addGap(70, 70, 70)
-                                .addComponent(jButton2))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel16)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel18))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel17))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel9)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel12))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel11))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel10))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel5)))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel13)
-                                    .addComponent(jLabel14)
-                                    .addComponent(jLabel15)
-                                    .addComponent(jLabel19)
-                                    .addComponent(jLabel20)))))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel20)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(169, 169, 169)
-                        .addComponent(jLabel1)))
-                .addContainerGap(146, Short.MAX_VALUE))
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(217, 217, 217)
+                        .addComponent(jButton2)))
+                .addContainerGap(207, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -331,11 +302,9 @@ public class crearRutina extends javax.swing.JFrame {
                     .addComponent(jLabel16)
                     .addComponent(jLabel18)
                     .addComponent(jLabel20))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(17, 17, 17))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -353,10 +322,6 @@ public class crearRutina extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        guardarRutina();
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -394,7 +359,6 @@ public class crearRutina extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

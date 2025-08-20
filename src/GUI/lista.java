@@ -340,6 +340,7 @@ public class lista extends javax.swing.JFrame {
             ventanaCrearRutina.setLocationRelativeTo(null);
             
         }
+       
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -360,6 +361,7 @@ public class lista extends javax.swing.JFrame {
             ventanaCrearRutina.setLocationRelativeTo(null);
             
         }
+       
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -378,8 +380,8 @@ public class lista extends javax.swing.JFrame {
             ventanaCrearRutina.agregarEjercicio(ejercicio);
             
             ventanaCrearRutina.setLocationRelativeTo(null);
-            
         }
+       
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -400,6 +402,8 @@ public class lista extends javax.swing.JFrame {
             ventanaCrearRutina.setLocationRelativeTo(null);
             
         }
+        
+      
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -420,6 +424,8 @@ public class lista extends javax.swing.JFrame {
             ventanaCrearRutina.setLocationRelativeTo(null);
             
         }
+        
+       
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed

@@ -6,35 +6,41 @@ import java.io.IOException;
 import java.util.List;
 import javax.swing.JOptionPane;
 import FitnessClasses.Ejercicio;
+import FitnessClasses.RutinaBD;
+
 
 
 public class exportar extends javax.swing.JFrame {
+   
+    private String nombreRutina;  // Guarda el nombre de la rutina actual
+    private List<Ejercicio> listaEjercicios;  // Lista con los ejercicios que se van a mostrar/exportar
+
     
-    private String nombreRutina;
-    private List<FitnessClasses.Ejercicio> listaEjercicios; 
-    
+    // Constructor de la ventana/exportación
     public exportar(String nombreRutina, List<Ejercicio> listaEjercicios) {
         this.nombreRutina = nombreRutina;
         this.listaEjercicios = listaEjercicios;
         initComponents();
         llenarVista();
     }
-    
-    
+    // Método que llena la vista con los datos de la rutina
     private void llenarVista() {
-        jLabel3.setText(nombreRutina);
+        jLabel3.setText(nombreRutina);// Muestra el nombre de la rutina en un label
 
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < listaEjercicios.size(); i++) {
-            Ejercicio e = listaEjercicios.get(i);
-            sb.append("Ejercicio ").append(i + 1).append(":\n");
-            sb.append("Nombre: ").append(e.getNombre()).append("\n");
-            sb.append("Categoría: ").append(e.getCategoria()).append("\n");
+            Ejercicio e = listaEjercicios.get(i);  
+            sb.append("Ejercicio ").append(i + 1).append(":\n");  
+            sb.append("Nombre: ").append(e.getNombre()).append("\n"); 
+            sb.append("Categoría: ").append(e.getCategoria()).append("\n");  
             sb.append("Descripción: ").append(e.getDescripcion()).append("\n");
             sb.append("Dificultad: ").append(e.getDificultad()).append("\n\n");
         }
         jTextArea1.setText(sb.toString());
     }
+
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,6 +59,7 @@ public class exportar extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,7 +80,7 @@ public class exportar extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Descripción:");
 
-        jButton1.setText("Exportar rutina");
+        jButton1.setText("Exportar rutina a txt");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -89,6 +96,13 @@ public class exportar extends javax.swing.JFrame {
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Guarda en BD");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
             }
         });
 
@@ -108,14 +122,17 @@ public class exportar extends javax.swing.JFrame {
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel3))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(142, 142, 142)
-                                .addComponent(jButton2)))))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jButton1)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jButton3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton2))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel8)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -134,8 +151,12 @@ public class exportar extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton3))
                 .addContainerGap(10, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -161,21 +182,47 @@ public class exportar extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Gracias por usar el sistema. ¡Hasta pronto!");
         System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+           guardarRutina();                        
+    }//GEN-LAST:event_jButton3ActionPerformed
+    
+    private void guardarRutina() {
+        // Validar que haya un nombre para la rutina
+        if (nombreRutina == null || nombreRutina.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese un nombre para la rutina.");
+            return;
+        }
+        // Validar que haya al menos un ejercicio en la lista
+        if (listaEjercicios == null || listaEjercicios.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe agregar al menos un ejercicio.");
+            return;
+        }
+
+        // Guardar la rutina en la base de datos
+        RutinaBD.guardarRutina(nombreRutina, listaEjercicios);
+        JOptionPane.showMessageDialog(this, "Rutina '" + nombreRutina + "' guardada correctamente.");
+    }
+  
     
 
     private void exportarArchivo() {
+        // Validar que haya un nombre para la rutina
         if (nombreRutina == null || nombreRutina.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Nombre de rutina no definido.");
             return;
         }
+        // Validar que haya ejercicios para exportar
         if (listaEjercicios == null || listaEjercicios.isEmpty()) {
             JOptionPane.showMessageDialog(this, "No hay ejercicios para exportar.");
             return;
         }
 
+        // Crear un archivo .txt con el nombre de la rutina y escribir los ejercicios
         try (FileWriter writer = new FileWriter(nombreRutina + ".txt")) {
             writer.write("Nombre de la rutina: " + nombreRutina + "\n\n");
 
+            // Escribir cada ejercicio con sus datos
             for (int i = 0; i < listaEjercicios.size(); i++) {
                 Ejercicio e = listaEjercicios.get(i);
                 writer.write("Ejercicio " + (i + 1) + ":\n");
@@ -222,6 +269,7 @@ public class exportar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

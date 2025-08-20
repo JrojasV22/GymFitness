@@ -1,13 +1,8 @@
 
 package GUI;
 
-//import FitnessClasses.BaseDatos;
 import FitnessClasses.BaseDatos;
-import FitnessClasses.RutinaBD;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
 import FitnessClasses.Servidor;
 
 public class VentanaServidor extends javax.swing.JFrame {
@@ -63,27 +58,28 @@ public class VentanaServidor extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jScrollPane1);
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel1.setText("Servidor Fideflix ");
+        jLabel1.setText("Servidor GimnasiosFit ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(87, 87, 87)
+                        .addComponent(jLabel1)))
                 .addContainerGap(44, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(121, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel1)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(61, Short.MAX_VALUE))
         );
